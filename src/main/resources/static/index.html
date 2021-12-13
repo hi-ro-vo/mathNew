@@ -26,7 +26,7 @@
     var sendRange = function (){
         $.ajax({
             type: "POST",
-            data: { param:["123+123", "123-123"] },
+            data: { param:["a=123+123", "b=123-a", "a+b"] },
             url: '/sendStrings',
             success: function (data){
                 console.log(data)

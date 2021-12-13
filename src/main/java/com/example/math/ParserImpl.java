@@ -2,6 +2,7 @@ package com.example.math;
 
 import com.example.math.Expresions.Expresion;
 import com.example.math.Expresions.ExpresionFactory;
+import com.example.math.Expresions.VariableAssignment;
 import org.springframework.stereotype.Service;
 
 
@@ -13,8 +14,18 @@ public class ParserImpl implements Parser {
 
     @Override
     public Expresion parse(String str) {
+        String name = "";
+        if (str.indexOf("=")!=-1){
+            name = str.substring(0, str.indexOf("=")).trim();
+            str = str.substring(str.indexOf("=")+1);
+        }
+
         StringTree stringTree = new StringTree(str.replaceAll("\\s",""), null);
         Expresion expresion = createExpresionsTree(stringTree);
+
+        if (!name.equals("")){
+            return new VariableAssignment(expresion, name);
+        }
         return expresion;
     }
 
