@@ -3,12 +3,14 @@ package com.example.math;
 
 
 import com.example.math.Expresions.Expresion;
+import com.example.math.Expresions.ExpresionFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
@@ -22,5 +24,10 @@ public class MVCController {
         List<Double> list =  Arrays.stream(strings).map(parser::parse).map(Expresion::execute).collect(Collectors.toList());
 
         return list;
+    }
+
+    @GetMapping("/getCash")
+    Map<String, Double> getCash(){
+        return ExpresionFactory.variableServise.variables;
     }
 }

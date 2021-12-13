@@ -16,6 +16,7 @@
 <body>
     <div>
         <a class="btn btn-primary m-3" onclick="sendRange()">Это кнопка отправить</a>
+        <a class="btn btn-primary m-3" onclick="getCash()">Кеш</a>
     </div>
 
 
@@ -34,6 +35,15 @@
         });
     }
 
+    var getCash = function (){
+        $.ajax({
+            type: "GET",
+            url: '/getCash',
+            success: function (data){
+                console.log(data)
+            }
+        });
+    }
 </script>
 
 </body>
